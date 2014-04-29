@@ -1,0 +1,70 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\Groups
+ *
+ * @ORM\Table(name="groups")
+ * @ORM\Entity
+ */
+class Groups
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $city
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=false)
+     */
+    private $city;
+
+    /**
+     * @var string $location
+     *
+     * @ORM\Column(name="location", type="string", length=255, nullable=false)
+     */
+    private $location;
+
+    /**
+     * @var boolean $isActive
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive;
+
+    /**
+     * @var \DateTime $createdat
+     *
+     * @ORM\Column(name="createdat", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime $updatedat
+     *
+     * @ORM\Column(name="updatedat", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    /**
+     * @var Community
+     *
+     * @ORM\ManyToOne(targetEntity="Community")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="community_id", referencedColumnName="id")
+     * })
+     */
+    private $community;
+
+
+}

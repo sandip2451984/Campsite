@@ -1,0 +1,104 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+
+	{% block stylesheets %}
+	  {{ parent() }}
+	  {% if isEditable == 1 %}
+		 <link rel="stylesheet" href="{{ asset('css/jwysiwyg/jquery.wysiwyg.css')}}" type="text/css" />
+	  {% endif %}
+	 {% endblock %} 
+	
+	
+	{% block javascripts %}
+		{{ parent() }}
+		{% if isEditable == 1 %}
+			<script src="{{ asset('js/scripts/jquery.ui.js') }}"></script>
+			<script src="{{ asset('js/scripts/jquery.editinplace.js') }}"></script>
+			<script src="{{ asset('js/jwysiwyg/jquery.wysiwyg.js') }}"></script>
+			<script src="{{ asset('js/jeditable/jquery.jeditable.js') }}"></script>
+			<script src="{{ asset('js/jeditable/wysiwyg/jquery.jeditable.wysiwyg.js') }}"></script>
+			
+			<script type="text/javascript" src="{{ asset('js/scripts/ajaxupload.3.5.js') }}" ></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+				var btnUpload=$('#upload');
+		        var status=$('#status');
+		
+				$(".editable").editInPlace({	
+					url: "{{ path('edit_user_profile',{id:userProfile.id})}}",	
+					show_buttons:true
+				});
+				
+			
+				
+			$('.jqueryeditable').editable("{{ path('edit_user_profile',{id:userProfile.id,element_id:'description'})}}", { 
+				type      : 'wysiwyg',
+				name      : 'update_value',
+				onblur    : 'ignore',
+				submit    : 'OK',
+				cancel    : 'Cancel',
+				wysiwyg   : { controls : { separator04         : { visible : true },
+										   insertOrderedList   : { visible : true },
+										   insertUnorderedList : { visible : true }
+							}
+				}
+			});	
+			new AjaxUpload(btnUpload, {
+			action: "{{path('edit_user_profile',{id:userProfile.id})}}",
+			name: 'uploadfile',
+			onSubmit: function(file, ext){
+				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                    // extension is not allowed 
+					status.text('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				status.text('Uploading...');
+			},
+			onComplete: function(file, response){
+				//On completion clear the status
+				status.text('');
+				//Add uploaded file to list
+				$("#files").attr('src',response);
+				
+			}
+		});	
+				
+			});
+
+			</script>
+	  {% endif %}
+	{% endblock %}
+	
+
+<div id="content">		
+<div class="col1">			
+<h1 class="spcr-b">About Marketing Camp: Leadership Team</h1>		
+<hr>
+	{% set img = 'img/users/' ~ userProfile.img %}		
+	<img width="102" height="102" class="left spcr-r" alt="" src="{{ asset(img) }}" id="files">
+	{% if isEditable == 1 %}
+		<div id="upload" style="width:325px;"><span><a href="#" class="btn">change image</a><span></div><span id="status" ></span>
+		<ul id="files" ></ul>
+	{% endif %}
+	<a target="_blank" href="{{ userProfile.linkedinUrl}}">
+	<img width="25" height="25" class="right" alt="" src="{{ asset('img/icon-Linkedin-25px.jpg') }}"></a>
+	 {% set name = userProfile.firstName ~ " " ~ userProfile.lastName %}				
+	<h3>Name:  <span class="editable" id="firstName"> {{ userProfile.firstName}}</span> <span class="editable" id="lastName"> {{ userProfile.lastName}}</span>
+	</h3> 
+	<h3>Title:  <span class="editable" id="title">  {{ userProfile.title}}</h3> 
+	<h3>Company: <span class="editable" id="company"> {{ userProfile.company}}</h3>
+	<div id="description" class="jqueryeditable">{{ userProfile.description|raw }}</div>
+	
+	<hr class="clr">
+</div>
+
+<div class="col2">
+	{% include "EventBundle::right_camp.html.twig" %}
+</div>
+	
+<div class="clr"></div>	
+	
+</div>
+<div class="push"></div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+<div id="footer">
+	<div id="ftr-content">		
+	
+		<div class="ftrcol">
+			<h5>About</h5>
+			<ul>
+				<li><a href="about.html">About CLSWest</a></li>
+				<li><a href="ab-mission.html">Mission</a></li>
+				<li><a href="ab-bios.html">Volunteer Bios</a></li>
+				
+				<li class="spcr-t"><a href="#">Contact Us</a></li>
+				<li><a href="#">Home</a></li>
+			</ul>
+		</div>
+		
+		<div class="ftrcol">
+			<h5>Event FAQs</h5>
+			<ul>
+				<li><a href="event-overview.html">Event Overview</a></li>
+				<li><a href="event-expect.html">What to Expect</a></li>
+				<li><a href="event-bring.html">What to Bring</a></li>
+				<li><a href="event-faq.html">More FAQs</a></li>
+				<li><a href="schedule.html">Session Schedule</a></li>
+			</ul>
+		</div>
+		
+		<div class="ftrcol">
+			<h5>Participate</h5>
+			<ul>
+				<li><a href="#">Post a Question </a></li>
+				<li><a href="#">Answer Questions</a></li>
+				<li><a href="#">Vote up an Answer</a></li>
+				<li><a href="#">Spread the word</a></li>
+			</ul>
+			
+			<h5>SPONSOR</h5>
+			<ul>
+				<li><a href="#">Sponsor Webinar</a></li>
+				<li><a href="#">Sponsor Workshop</a></li>
+				<li><a href="#">Sponsor Meetup</a></li>
+			</ul>
+		</div>
+		<div class="ftrcol">		
+			<ul>
+				 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<li><a href="{{ path('fos_user_security_logout') }}"><strong>SIGN OUT!</strong></a></li>
+					<li><a href="#"><strong>CREATE AN ACCOUNT</strong></a></li>
+				 {% else %}
+					<li><a href="{{ path('fos_user_security_login') }}"><strong>SIGN IN!</strong></a></li>
+					<li><a href="{{path('fos_user_registration_register') }}"><strong>CREATE AN ACCOUNT</strong></a></li>
+				 {% endif %}
+			</ul>
+			
+			<ul>
+				<!-- <li><a href="{{ path('fos_user_security_login')}}">Login</a></li> -->
+				
+	           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            		<li><a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+					</a></li>
+				{% else %}
+					<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+				{% endif %}
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="{{ path('client')}}">Home</a></li>
+			<ul>
+        </div>
+        <div id="contactNfo" class="divrt">
+	        <h5>Contact Us</h5>
+			
+			<p><a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#99;&#97;&#109;&#112;&#46;&#111;&#114;&#103;">&#105;&#110;&#102;&#111;&#64;&#109;&#97;&#114;&#107;&#101;&#116;&#105;&#110;&#103;&#99;&#97;&#109;&#112;&#46;&#111;&#114;&#103;</a></p>
+			
+			<p>Twitter Handle<br>
+			@PingOne<br>
+			Hashtag: #SSO</p>
+
+			<p>Follow us on<br>
+			<a href="#" target="_blank"><img src="{{ asset("img/facebook_16.png")}}" width="16" width="16" alt=""></a> 
+			<a href="#" target="_blank"><img src="{{ asset("img/twitter_16.png")}}" width="16" width="16" alt=""></a>
+			<a href="#" target="_blank"><img src="{{ asset("img/linkedin_16.png")}}" width="16" width="16" alt=""></a> 
+			<a href="#" target="_blank"><img src="{{ asset("img/youtube_16.png")}}" width="16" width="16" alt=""></a> 
+			<a href="#" target="_blank"><img src="{{ asset("img/flickr_16.png")}}" width="16" width="16" alt=""></a>
+			<a href="#" target="_blank"><img src="{{ asset("img/slideshare_16.png")}}" width="16" width="16" alt=""></a>
+			<a href="#" target="_blank"><img src="{{ asset("img/foursquare_16.png")}}" width="16" width="16" alt=""></a>
+			<a href="#" target="_blank"><img src="{{ asset("img/rss_16.png")}}" width="16" width="16" alt=""></a></p>
+
+		</div>
+		
+		<br class="clr">
+		
+		<div id="copyright">
+			<script language="JavaScript">document.write(include_copyright(2012));</script>
+		</div>
+	</div><!-- end footer content -->
+</div><!-- end footer -->

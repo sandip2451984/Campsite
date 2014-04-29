@@ -1,0 +1,14 @@
+{% if group_events|length > 0 %}
+<div class="qList qListMP"> 
+<h2> Upcoming Events for Group </h2>
+	{% for events in group_events %}
+		<div class="row">
+			<h3><a href="{{ path('marketingcamp', { 'id': events.event.id,'communityId':communityId })}}"> {{events.event.name}} </a></h3>
+			
+			<p>{{ events.event.description}}</p>
+					{{ events.event.fromDate | date('d/m/Y') }} - {{ events.event.toDate | date('d/m/Y') }}
+		</div>
+	{% endfor %}	
+	<p class="right"><a href="{{path('upcoming_group_events', {'groupId': groupId,'communityId':communityId }) }}" class="btn">more</a></p>
+</div>
+{% endif %}	

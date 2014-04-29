@@ -1,0 +1,9 @@
+{% if events|length > 0 %}
+	<h2>Recent Events</h2>			
+	<ul class="dflt">
+		{% for event in events %}
+			<li><a href="{{ path('marketingcamp', { 'id': event.id, 'communityId' : communityId  })}}">{{ event.name}} </a> - {{event.city}} {{ event.fromDate | date('M  jS, Y') }} </li>
+		{% endfor %}
+	</ul>
+	<p class="right"><a href="{{path('recent_events',{ 'communityId' : communityId} ) }}" class="btn">more</a></p>
+{% endif %}

@@ -1,0 +1,14 @@
+<!-- right side content -->
+<div class="eVnts eVntsW">
+	
+	{% render 'EventBundle:Event:nextEvent' with {communityId:communityId} %}
+	<hr>
+	
+	{% render 'EventBundle:Event:upcomingEvents' with {communityId:communityId}%}
+	
+	<!-- end upcoming events -->
+	<br class="clr">
+	
+	<hr>
+	{% render 'EventBundle:Event:recentEvents' with {communityId:communityId}%}	
+</div>

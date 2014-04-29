@@ -1,0 +1,53 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\Community
+ *
+ * @ORM\Table(name="community")
+ * @ORM\Entity
+ */
+class Community
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var boolean $isActive
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive;
+
+    /**
+     * @var \DateTime $createdat
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime $updateat
+     *
+     * @ORM\Column(name="updateAt", type="datetime", nullable=false)
+     */
+    private $updateat;
+
+
+}

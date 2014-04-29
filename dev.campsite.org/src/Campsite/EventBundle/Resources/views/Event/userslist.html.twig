@@ -1,0 +1,34 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<div id="content">		
+		
+		<div class="col1">
+			{% if users|length > 0 %}
+				<h1 class="spcr-b">About Marketing Camp: Leadership Team</h1>		
+				<hr>
+				
+				{% for user in users %}
+					{% set img = 'img/users/' ~ user.img %}
+					<img width="102" height="102" class="left spcr-r" alt="" src="{{ asset(img) }}">
+					<a target="_blank" href="{{ user.linkedinUrl}}">
+					<img width="25" height="25" class="right" alt="" src="{{ asset('img/icon-Linkedin-25px.jpg') }}"></a>
+					<h3>{{ user.name}}, {{ user.title}}, {{ user.company}}</h3>
+					{{ user.description|raw }}
+		  	        <hr class="clr"> 
+				{% endfor %}
+				
+			{% else %}
+				No Record Found
+			{% endif %}
+		</div>
+		
+		<div class="col2">
+			{% include "EventBundle::right_camp.html.twig" %}
+		</div>
+			
+		<div class="clr"></div>	
+			
+	</div>
+	<div class="push"></div>
+{% endblock %}
+

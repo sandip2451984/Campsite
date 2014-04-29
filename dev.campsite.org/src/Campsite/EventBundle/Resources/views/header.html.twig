@@ -1,0 +1,32 @@
+{% block header %}
+{% if app.request.attributes.get('_route') == 'client' or app.request.attributes.get('_route') == 'chapters' or app.request.attributes.get('_route') == 'community'  %}
+	{% set homepage = 1%}
+{% else %}
+	{% set homepage = 0%}
+{% endif %}
+
+	{% if homepage == 1 %}
+	<div id="header-mp"> <!-- begin header -->
+		{% include 'EventBundle::top_navigation.html.twig' %}
+		<br class="clr">
+		{% include('EventBundle::menu.html.twig') %}
+		<div id="banner-ss">
+		{% if app.request.attributes.get('_route') == 'chapters' %}
+			{% render "EventBundle:Event:getMultipleGoogleData"  with {id:app.request.attributes.get('id')} %}
+		{% else %}
+			{% include('EventBundle::slider.html.twig') %}
+		{% endif %}	
+		</div>
+		<div id="banner-sdbr">
+			{% include 'EventBundle::right_pages.html.twig' with {'communityId' : communityId}%}
+		</div>
+	</div> <!-- end header -->
+	{% else %}
+		<div id="header"> <!-- begin header -->
+		{% include 'EventBundle::top_navigation.html.twig' %}
+		<br class="clr">
+		{% include('EventBundle::menu.html.twig') %}
+	</div>
+	<br class="clr">
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,123 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\Events
+ *
+ * @ORM\Table(name="events")
+ * @ORM\Entity
+ */
+class Events
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer $userId
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     */
+    private $userId;
+
+    /**
+     * @var integer $groupsId
+     *
+     * @ORM\Column(name="groups_id", type="integer", nullable=false)
+     */
+    private $groupsId;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var \DateTime $fromDate
+     *
+     * @ORM\Column(name="from_date", type="datetime", nullable=false)
+     */
+    private $fromDate;
+
+    /**
+     * @var \DateTime $toDate
+     *
+     * @ORM\Column(name="to_date", type="datetime", nullable=false)
+     */
+    private $toDate;
+
+    /**
+     * @var string $address
+     *
+     * @ORM\Column(name="address", type="text", nullable=false)
+     */
+    private $address;
+
+    /**
+     * @var string $city
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string $state
+     *
+     * @ORM\Column(name="state", type="string", length=255, nullable=true)
+     */
+    private $state;
+
+    /**
+     * @var string $country
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var integer $zipcode
+     *
+     * @ORM\Column(name="zipcode", type="integer", nullable=true)
+     */
+    private $zipcode;
+
+    /**
+     * @var boolean $isActive
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive;
+
+    /**
+     * @var \DateTime $createdat
+     *
+     * @ORM\Column(name="createdat", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime $updatedat
+     *
+     * @ORM\Column(name="updatedat", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+
+}

@@ -1,0 +1,9 @@
+{% if events|length > 0 %}
+	<h2>Recent Events</h2>			
+	<ul class="dflt">
+		{% for event in events %}
+			<li>{{ event.name}} - {{event.city}} {{ event.fromDate | date('M  jS, Y') }} </li>
+		{% endfor %}
+	</ul>
+	<p class="right"><a href="{{path('recent_events') }}" class="btn">more</a></p>
+{% endif %}

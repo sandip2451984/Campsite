@@ -1,0 +1,21 @@
+<div id="aboutSSO" {% if homepage == 0 %} class="aboutSSO-w2 spcr-b" {%else%} class="aboutSSO-wh spcr-b" {% endif %}>			
+<h2>About MarketingCamp</h2>
+
+<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
+
+<p class="right"><a href="#" class="btn">more &rsaquo;</a></p>
+
+<br class="clr">				
+</div>
+
+<div id="showCase" {% if homepage == 0 %} class="showCase-w2 spcr-b" {%else%} class="showCase-wh" {% endif %}>			
+	{% render 'EventBundle:Event:nearGroup' with {communityId:communityId,page:homepage} %} 		
+</div>
+
+{% if homepage ==0 %}
+<div class="eVnts eVntsW2">
+	{% render 'EventBundle:Event:nextEvent' with {communityId:communityId } %}
+	{% render 'EventBundle:Event:upcomingEvents' with {communityId:communityId }%}
+	{% render 'EventBundle:Event:recentEvents' with {communityId:communityId }%}
+</div>
+{% endif%}

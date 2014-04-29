@@ -1,0 +1,8 @@
+/vendor
+/nbproject
+/app/cache
+/app/logs
+/web/bundles/webprofiler
+/web/bundles/framework
+/web/bundles/sensiodistribution
+/app/bootstrap.php.cache

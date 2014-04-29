@@ -1,0 +1,119 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/scripts/jquery.mockjax.js') }}"></script>
+	<script src="{{ asset('js/scripts/jquery.autocomplete.js') }}"></script>
+	<script src="{{ asset('js/scripts/demo.js') }}"></script>
+{% endblock %}
+
+<h1>Events edit</h1>
+
+<form action="{{ path('events_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<table class="form">
+<tr>
+        <td>User id </td>
+          <td>
+            {{ form_widget(edit_form.userId) }}
+          </td>
+        </tr>
+<tr>
+        <td>Name </td>
+          <td>
+            {{ form_widget(edit_form.name) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>Description </td>
+          <td>
+            {{ form_widget(edit_form.description) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>From Date</td>
+          <td>
+            {{ form_widget(edit_form.fromDate) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>To Date</td>
+          <td>
+            {{ form_widget(edit_form.toDate) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>is Active </td>
+          <td>
+            {{ form_widget(edit_form.isActive) }}
+          </td>
+ </tr>
+
+<tr>
+        <td>Address </td>
+          <td>
+            {{ form_widget(edit_form.address) }}
+          </td>
+ </tr>
+<tr>
+        <td>City </td>
+          <td>
+            {{ form_widget(edit_form.city) }}
+          </td>
+ </tr>
+<tr>
+        <td>State</td>
+          <td>
+            {{ form_widget(edit_form.state) }}
+          </td>
+ </tr>
+<tr>
+        <td>zipcode </td>
+          <td>
+            {{ form_widget(edit_form.zipcode) }}
+          </td>
+ </tr>
+
+      <tr>
+        <td>Country </td>
+          <td>
+            {{ form_widget(edit_form.country) }}
+          </td>
+        </tr>
+      <tr>
+        <td>Created At </td>
+          <td>
+            {{ form_widget(edit_form.createdat) }}
+          </td>
+        </tr>
+      <tr>
+        <td>Updated At </td>
+          <td>
+            {{ form_widget(edit_form.updatedat) }}
+          </td>
+        </tr>
+
+</table>
+    <p>
+	<input type="hidden" name="communitiID" value="{{ communityId}}">
+        <button type="submit" class="btnF">Edit</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('events',{'communityId':communityId }) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('events_delete', { 'id': entity.id , 'communityId':communityId}) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btnF">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+<div id="topNav">			
+			<ul>
+				<li>Follow us on <a href="#" target="_blank">
+				<img src="{{ asset("img/facebook_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/twitter_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/linkedin_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/youtube_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/flickr_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/slideshare_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/foursquare_16.png")}}" width="16" width="16" alt=""></a> <a href="#" target="_blank">
+				<img src="{{ asset("img/rss_16.png")}}" width="16" width="16" alt=""></a></li>
+				
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            		<li><a href="{{ path('fos_user_security_logout') }}">
+						{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+					</a></li>
+				{% else %}
+					<li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+				{% endif %}
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="{{ path('client')}}">Home</a></li>
+			</ul>
+</div>
+
+<a href="{{ path('client')}}"><img src="{{ asset("img/logo.png")}}" alt="" width="300" height="125" id="brand"></a>
+
+<img src="{{ asset("img/tagline.png")}}" alt="" width="170" height="21" id="tagline">

@@ -1,0 +1,2 @@
+(1) Give RelationShip in Session to UserTopicVote Entity
+    in Session.php

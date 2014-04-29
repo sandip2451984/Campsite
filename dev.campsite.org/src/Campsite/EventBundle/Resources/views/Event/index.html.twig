@@ -1,0 +1,64 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<div id="content">
+
+	<div class="qList qListMP">
+			<h2> Events </h2>
+			{% for event in events %}
+			<div class="row">
+				<h3><a href="{{ path('marketingcamp', { 'id': event.id })}}">{{ event.name }}</a></h3>
+				<p>{{ event.description}}</p>
+					{{ event.fromDate | date('d/m/Y') }} - {{ event.toDate | date('d/m/Y') }}
+			</div>
+			<hr class="clr">
+			{% endfor %}
+	</div>
+	<div class="qSort">
+			<div>
+				<h3>Questions by SSO Type</h3>
+				<ul class="lnks">
+					<li><a href="#">Type 1</a></li>
+					<li><a href="#">Type 2</a></li>
+					<li><a href="#">Type 3</a></li>
+					<li><a href="#">Type 4</a></li>
+				</ul>
+				
+				<p class="right"><a class="btnSm" href="#">Propose new SSO type ›</a></p>
+				
+				<br class="clr">
+			</div>
+			<div>
+				<h3>Questions by Keyword</h3>
+				<ul class="lnks">
+					<li><a href="#">Keyword 1</a></li>
+					<li><a href="#">Keyword 2</a></li>
+					<li><a href="#">Keyword 3</a></li>
+					<li><a href="#">Keyword 4</a></li>
+				</ul>
+				
+				<p class="right"><a class="btnSm" href="#">Propose new SSO type ›</a></p>
+				
+				<br class="clr">			
+			</div>
+			<div>
+				<h3>Take the SSO Quiz</h3>
+				<ul class="lnks">
+					<li><a href="#">Question 1</a></li>
+					<li><a href="#">Question 2</a></li>
+					<li><a href="#">Question 3</a></li>
+					<li><a href="#">Question 4</a></li>
+				</ul>
+				
+				<p class="right"><a class="btnSm" href="#">Propose new SSO type ›</a></p>
+				
+				<br class="clr">				
+			</div>
+		</div>
+		
+	{% include 'EventBundle::right_content.html.twig'%}
+	<br class="clr">
+			
+	</div> <!-- end content -->
+<div class="push"></div>
+{% endblock %}
+

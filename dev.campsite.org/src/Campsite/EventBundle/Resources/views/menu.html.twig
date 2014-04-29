@@ -1,0 +1,82 @@
+
+<div id="navWrap"> <!-- begin navbar -->
+	<div id="nav">
+		<ul>
+			<li><a href="#" id="megaanchor1">About Us</a>
+				<div id="megamenu1" class="megamenu">		
+					<div class="column">
+						<ul>
+							<li><a href="#">About This Site</a></li>
+							<li><a href="#">Contributors</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>		
+			<li><a href="#" id="megaanchor2">Intro to SSO</a>
+				<div id="megamenu2" class="megamenu">		
+					<div class="column">
+						<ul>
+							<li><a href="#">Intro to SSO</a></li>
+							<li><a href="#">Types of SSO </a></li>
+							<li><a href="#">Benefits of SSO</a></li>
+							<li><a href="#">SSO Use Cases</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			<li><a href="#" id="megaanchor3">Participate</a>
+				<div id="megamenu3" class="megamenu">		
+					<div class="column">
+							<ul>
+								<li><a href="#">Post a Question </a></li>
+								<li><a href="#">Answer Questions</a></li>
+								<li><a href="#">Vote up an Answer</a></li>
+								<li><a href="#">Spread the word</a></li>
+							</ul>
+						</div>
+				</div>
+			</li>
+			<li><a href="#" id="megaanchor4">What&#8217;s New</a>
+				<div id="megamenu4" class="megamenu">		
+					<div class="column">
+						<ul>
+							<li><a href="#">Top Questions</a></li>
+							<li><a href="#">Take the Quiz</a></li>
+							<li><a href="#">Join an Event</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			<li><a href="#" id="megaanchor5">SPONSOR</a>
+				<div id="megamenu5" class="megamenu">		
+					<div class="column">
+						<ul>
+						    <li><a href="{{ path('sponsors_display')}}">Sponsor</a></li>
+							<li><a href="{{ path('partners_display')}}">Partners</a></li>
+							<li><a href="{{ path('users_display')}}">Users</a></li>	
+							<li><a href="{{ path('community')}}">Communities</a></li>	
+							
+							<li><a href="#">Sponsor Webinar</a></li>
+							<li><a href="#">Sponsor Workshop</a></li>
+							<li><a href="#">Sponsor Meetup</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+					<li>
+						<a href="{{ path('fos_user_security_logout') }}">SIGN OUT! <img src="{{ asset("img/arrow.png")}}" width="8" height="12" alt=""></a>
+					</li>
+					<li><a href="#">CREATE AN ACCOUNT <img src="{{ asset("img/arrow.png")}}" width="8" height="12" alt=""></a></li>					
+				{% else %}	
+					<li>
+					<a href="{{ path('fos_user_security_login')}}">SIGN IN! <img src="{{ asset("img/arrow.png")}}" width="8" height="12" alt=""></a>
+					</li>
+					<li><a href="{{path('fos_user_registration_register') }}">CREATE AN ACCOUNT <img src="{{ asset("img/arrow.png")}}" width="8" height="12" alt=""></a></li>
+				{% endif %}	
+			
+		</ul>
+		
+	</div> <!-- end nav -->
+</div> <!-- end navWrap -->

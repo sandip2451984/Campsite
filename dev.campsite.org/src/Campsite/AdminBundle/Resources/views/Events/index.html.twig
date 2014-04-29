@@ -1,0 +1,33 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+<div id="message">
+ {% if app.session.hasFlash('notice') %} 
+   <div>
+	   <p>{{ app.session.flash('notice')}}</p>
+	 </div>  
+{% endif %}	 
+ </div>
+<h1 class="qAnswr">Events list</h1>
+<br class="clr">
+{% if entities|length > 0 %}  
+
+	    {% for event in entities %}
+			<div class="qAnswr">
+				<h3><a href="{{ path('marketingcamp', { 'id': event.id,'communityId':communityId })}}">{{ event.name}}</a></h3>
+				<p>{{event.description }}</p>
+				{{ event.fromDate | date('d/m/Y') }} - {{ event.toDate | date('d/m/Y') }}
+				<div class="right tnytxt">
+				<ul>
+					<li> <a href="{{ path('events_edit', { 'id': event.id,'communityId':communityId }) }}" class="smtxt">edit</a> 
+					<a href="{{ path('events_show', { 'id': event.id,'communityId':communityId }) }}">show</a></li>
+				</ul>
+				</div>
+			</div>
+			<hr class="clr">
+		{% endfor %}
+{% else %}
+		<!-- <div class="norecord alert-message info qAnswr">No Event Found</h2></div> -->
+		<div class="norecord alert-message info qAnswr">No Event Found</div>
+		
+{% endif %}
+{% endblock %}

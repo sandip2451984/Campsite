@@ -1,0 +1,26 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+<h1>Session edit</h1>
+
+<form action="{{ path('session_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit">Edit</button>
+    </p>
+	<input type="hidden" name="communityId" value="{{communityId}}">
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('session',{'communityId':communityId}) }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('session_delete', { 'id': entity.id,'communityId':communityId} ) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

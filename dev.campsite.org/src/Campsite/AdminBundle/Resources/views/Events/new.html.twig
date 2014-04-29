@@ -1,0 +1,113 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/scripts/jquery.mockjax.js') }}"></script>
+	<script src="{{ asset('js/scripts/jquery.autocomplete.js') }}"></script>
+	<script src="{{ asset('js/scripts/demo.js') }}"></script>
+{% endblock %}
+
+<h1>Events creation</h1>
+
+<form action="{{ path('events_create',{'communityId':communityId}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form)}}
+<table class="form">
+<tr>
+        <td>User id </td>
+          <td>
+            {{ form_widget (form.userId, { 'attr': { 'value': userId} }) }}
+          </td>
+</tr>
+<tr>
+          <td>
+				<input type="hidden" name="groupId" value="{{groupId}}">
+				<input type="hidden" name="communityId" value="{{communityId}}">
+          </td>
+</tr>
+<tr>
+        <td>Name </td>
+          <td>
+            {{ form_widget(form.name) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>Description </td>
+          <td>
+            {{ form_widget(form.description) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>From Date</td>
+          <td>
+            {{ form_widget(form.fromDate) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>To Date</td>
+          <td>
+            {{ form_widget(form.toDate) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>is Active </td>
+          <td>
+            {{ form_widget(form.isActive) }}
+          </td>
+ </tr>
+
+<tr>
+        <td>Address </td>
+          <td>
+            {{ form_widget(form.address) }}
+          </td>
+ </tr>
+<tr>
+        <td>City </td>
+          <td>
+            {{ form_widget(form.city) }}
+          </td>
+ </tr>
+<tr>
+        <td>State</td>
+          <td>
+            {{ form_widget(form.state) }}
+          </td>
+ </tr>
+<tr>
+        <td>zipcode </td>
+          <td>
+            {{ form_widget(form.zipcode) }}
+          </td>
+ </tr>
+
+      <tr>
+        <td>Country </td>
+          <td>
+            {{ form_widget(form.country) }}
+          </td>
+        </tr>
+      <tr>
+        <td>Created At </td>
+          <td>
+            {{ form_widget(form.createdat) }}
+          </td>
+        </tr>
+      <tr>
+        <td>Updated At </td>
+          <td>
+            {{ form_widget(form.updatedat) }}
+          </td>
+        </tr>
+		
+</table>
+    <p>
+        <button type="submit" class="btnF">Create</button>
+    </p>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\Session
+ *
+ * @ORM\Table(name="session")
+ * @ORM\Entity
+ */
+class Session
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $name
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var Events
+     *
+     * @ORM\ManyToOne(targetEntity="Events")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * })
+     */
+    private $event;
+
+
+}

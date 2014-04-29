@@ -1,0 +1,62 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<br class="clr">
+
+<div id="content">
+  <div class="colLft">
+    
+	<div id="banner-ss">
+      <div class="nivoSlider" id="slider">
+        <img width="620" height="416" alt="" src="{{ asset("img/8165540479_014b0edcb9_z.jpg")}}">
+      </div>			
+    </div> <!-- Banner-ss -->
+	<div class="clr"> </div>
+	<div class="qList qListMP">
+		<div class="cBx1">
+		  <h2>Group Details</h2> 	
+		  <br>
+			<table class="tblStyle" summary="Marketing Camp unConference Info">	<tbody>
+				<tr>
+				<td><strong>City:</strong></td>
+				<td>{{ group.city}}</td>
+				</tr>
+				<tr>
+				<td><strong>Location:</strong></td>
+				<td>{{ group.location}}</td>
+				</tr>
+			</tbody>
+			</table>
+		</div> <!-- end of cBx1 -->
+		<br class="clr">
+		<div class="cBx2">
+		<!-- Google Map -->
+			{% set address = group.city~'+'~group.location %}
+			{% render 'EventBundle:Event:getGoogleMapAddress' with { address:address} %}
+		</div> <!-- End of div class dBx2 -->
+		<div>
+		 {% if  isAllowedToAddEvent == 2%}
+			<p> <a class="btn"> Add Event </a> </p>
+		 {% else %}
+			  <p><a href="{{ path('events_new', {'groupId':group.id,'communityId': communityId})}}" class="btn">Add Event</a></p> 
+		{% endif %}
+		</div>
+
+	</div>	<!-- end of qlist qlistmp -->
+	<div class="clr"> </div>
+	
+		{% render "EventBundle:Event:upcomingGroupEvents" with {'groupId' : group.id,'communityId':communityId} %}	
+    </div><!-- end of div class colLft -->
+	
+	<div class="colRt">
+	{% include 'EventBundle::right_pages.html.twig' with {'homepage': 0}  %}
+	</div>
+
+</div>
+
+
+	<div class="clr"></div>	
+	<br class="clr">
+	
+</div> <!-- End of DIv Content -->
+<div class="push"></div>
+{% endblock %}

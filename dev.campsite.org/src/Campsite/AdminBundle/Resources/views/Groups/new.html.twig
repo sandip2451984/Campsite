@@ -1,0 +1,62 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+
+<h1>Add group</h1>
+
+<form action="{{ path('groups_create',{communityId:communityId}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_errors(form)}}
+<table class="form">
+<tr>
+        <td>User id </td>
+          <td>
+            {{ form_widget (form.userId, { 'attr': { 'value': userId} }) }}
+          </td>
+</tr>
+<tr>
+        
+          <td>
+            <input type="hidden" value="{{communityId}}" name="communitiID">
+          </td>
+        
+<tr>
+        <td>City </td>
+          <td>
+            {{ form_widget(form.city) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>Location </td>
+          <td>
+            {{ form_widget(form.location) }}
+          </td>
+        </tr>
+
+<tr>
+        <td>is Active </td>
+          <td>
+            {{ form_widget(form.isActive) }}
+          </td>
+ </tr>
+
+      <tr>
+        <td>Created At </td>
+          <td>
+            {{ form_widget(form.createdat) }}
+          </td>
+        </tr>
+      <tr>
+        <td>Updated At </td>
+          <td>
+            {{ form_widget(form.updatedat) }}
+          </td>
+        </tr>
+
+</table>
+    <p>
+        <button type="submit" class="btnF">Create</button>
+    </p>
+</form>
+
+
+{% endblock %}

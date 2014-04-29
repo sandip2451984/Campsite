@@ -1,0 +1,166 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+{% block stylesheets %}
+  {{ parent() }}
+  {% if isEditable == 1 %}
+	 <link rel="stylesheet" href="{{ asset('css/jwysiwyg/jquery.wysiwyg.css')}}" type="text/css" />
+
+  {% endif %}
+ {% endblock %} 
+	 
+{% block javascripts %}
+		{{ parent() }}
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+		
+		{% if isEditable == 1 %}
+			<script src="{{ asset('js/scripts/jquery.ui.js') }}"></script>
+			<script src="{{ asset('js/scripts/jquery.editinplace.js') }}"></script>
+			<script src="{{ asset('js/jwysiwyg/jquery.wysiwyg.js') }}"></script>
+			<script src="{{ asset('js/jeditable/jquery.jeditable.js') }}"></script>
+			<script src="{{ asset('js/jeditable/wysiwyg/jquery.jeditable.wysiwyg.js') }}"></script>
+			
+			<!-- for date and time -->
+			<script src="{{ asset('js/jeditable/jquery.jeditable.masked.js') }}"></script>
+			<script src="{{ asset('js/scripts/jquery.maskedinput.js') }}"></script>
+			
+			<script src="{{ asset('js/jeditable/jquery.jeditable.time.js') }}"></script>
+			<script src="{{ asset('js/scripts/jquery.timepicker.js') }}"></script>
+			<script type="text/javascript">
+				$(document).ready(function(){
+			
+				$(".editable").editInPlace({	
+					url: "{{ path('edit_event_details',{id:event.id})}}",	
+					show_buttons:true
+				});
+				
+			 $("#from_date").editable("{{ path('edit_event_details',{id:event.id,element_id:'from_date'})}}", { 
+				type      : "masked",
+				name      : 'update_value',
+				mask      : "99/99/9999",
+				submit    : 'OK',
+				cancel    : 'Cancel',
+				tooltip   : "Click to edit..."
+			});	
+			
+			 $("#to_date").editable("{{ path('edit_event_details',{id:event.id,element_id:'to_date'})}}", { 
+				type      : "masked",
+				name      : 'update_value',
+				mask      : "99/99/9999",
+				submit    : 'OK',
+				cancel    : 'Cancel',  
+				tooltip   : "Click to edit..."
+			});	
+			  $("#from_time").editable("{{ path('edit_event_details',{id:event.id,element_id:'from_time'})}}", { 
+				type      : 'time',
+				name      : 'update_value',
+				submit    : 'OK',
+				cancel    : 'Cancel',
+				tooltip   : "Click to edit..."
+			});
+			$("#to_time").editable("{{ path('edit_event_details',{id:event.id,element_id:'to_time'})}}", { 
+				type      : 'time',
+				name      : 'update_value',
+				submit    : 'OK',
+				cancel    : 'Cancel',
+				tooltip   : "Click to edit..."
+			});
+			
+			$('.jqueryeditable').editable("{{ path('edit_event_details',{id:event.id,element_id:'description'})}}", { 
+				type      : 'wysiwyg',
+				name      : 'update_value',
+				onblur    : 'ignore',
+				submit    : 'OK',
+				rows      :  10,
+				cols      :  80,
+				cancel    : 'Cancel',
+				wysiwyg   : { controls : { separator04         : { visible : true },
+										   insertOrderedList   : { visible : true },
+										   insertUnorderedList : { visible : true },
+										   cut   : { visible : true },
+										   copy  : { visible : true },
+										   paste : { visible : true }
+							}
+					}
+				});					
+			});
+				
+			</script>
+	  {% endif %}
+{% endblock %}
+	
+<br class="clr">
+
+<div id="content">
+  <div class="colLft">
+    
+	<div id="banner-ss">
+      <div class="nivoSlider" id="slider">
+        <img width="620" height="416" alt="" src="{{ asset("img/8165540479_014b0edcb9_z.jpg")}}">
+      </div>			
+    </div> <!-- Banner -->
+<div class="clr" style="clear:both;margin:20px 0;height:1px">	</div>
+	<div id="row1">
+	
+    <div class="cBx1">
+		<div class="spcr-l">
+			<p><a href="{{ path('session_new', { 'communityId': communityId, 'eventId':event.id })}}" class="btn">Add Session</a></p>
+		</div>
+		
+      <h2><span class="editable" id="name">{{ event.name}}</span></h2>
+      <br>
+		<table class="tblStyle" summary="Marketing Camp unConference Info">	<tbody>
+			<tr>
+			<td width="35%"><strong>DATE:</strong></td>
+			<td width="65%"><span id="from_date">{{ event.fromDate | date('m/d/Y') }}</span> - 
+			<span id="to_date">{{ event.toDate | date('m/d/Y') }} </span></td>
+			</tr>
+			<tr>
+			<td><strong>TIME:</strong></td>
+			<td><span id="from_time">{{ event.fromDate | date('h:s') }}</span> - <span id="to_time">{{ event.toDate | date('h:s') }} </span></td>
+			</tr>
+			<tr>
+			<td><strong>LOCATION:</strong></td>
+			<td><span class="editable" id="address">{{ event.address }}</span><br>
+			<span class="editable" id="city">{{ event.city}} </span>,<span class="editable" id="state">{{ event.state}}</span><br> {{ event.country }} - <span class="editable" id="zipcode">{{ event.zipCode }}</span></td>
+			</tr>
+			</tbody>
+		</table>
+	<br>	
+	</div> <!-- end of cBx1 -->
+	<div class="cBx2">
+		<!-- Google Map -->
+			{% set address = event.address~'+'~event.city ~'+'~event.state ~'+'~event.country %}
+			
+			{% render 'EventBundle:Event:getGoogleMapAddress' with { address:address} %}
+	</div> <!-- End of div class dBx2 -->
+	<div class="clr"> </div>
+	
+	</div>
+	<div class="clr" style="clear:both;margin:20px 0;height:1px">	</div>
+	
+	<div>
+		<div id="description" class="jqueryeditable">{{event.description|raw }}</div>
+	</div>
+	<br class="clr">
+
+	<div class="clr"> </div>
+	<hr>
+	{% render 'EventBundle:Session:sessionListByEvent' with {'communityId':communityId,'eventId':event.id} %}
+	
+		
+    </div><!-- end of div class colLft -->
+
+	
+	<div class="colRt">
+	{% include 'EventBundle::right_pages.html.twig' with {'homepage': 0, 'communityId':communityId}  %}
+	</div>
+
+</div>
+
+
+	<div class="clr"></div>	
+	<br class="clr">
+	
+</div> <!-- End of DIv Content -->
+<div class="push"></div>
+{% endblock %}

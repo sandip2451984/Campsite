@@ -1,0 +1,36 @@
+{% extends "CampsiteAdminBundle::layout.html.twig" %}
+{% block admin_content %}
+
+<h1>Session creation</h1>
+
+<form action="{{ path('session_create',{communityId:communityId}) }}" method="post" {{ form_enctype(form) }}>
+   {{ form_errors(form)}}
+   
+ <table class="form">
+<tr>
+        <td>User id </td>
+          <td>
+            {{ form_widget (form.userId, { 'attr': { 'value': userId} }) }}
+          </td>
+</tr>
+<tr>
+          <td>
+				<input type="hidden" name="eventId" value="{{eventId}}">
+				<input type="hidden" name="communityId" value="{{communityId}}">
+				
+          </td>
+</tr>
+<tr>
+        <td>Name </td>
+          <td>
+            {{ form_widget(form.name) }}
+          </td>
+        </tr>
+</table>
+  
+    <p>
+        <button type="submit" class="btnF">Create</button>
+    </p>
+</form>
+
+{% endblock %}

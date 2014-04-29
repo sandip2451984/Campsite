@@ -1,0 +1,24 @@
+{% if event|length > 0 %}
+<h2>Our Next Event</h2>
+
+<table summary="Event Info" class="tblStyle">
+	<tbody>
+		<tr>
+			<td width="35%"><strong>DATE:</strong></td>
+			<td width="65%">{{ event.fromDate | date('M  jS, Y') }}</td>
+		</tr>
+		<tr>
+			<td><strong>TIME:</strong></td>
+			<td>{{ event.fromDate | date('h:i:s') }}</td>
+		</tr>
+		<tr>
+			<td><strong>LOCATION:</strong></td>
+			<td>{{ event.address }}<br>{{ event.city}} ,{{ event.state}}<br>{{ event.country }} -{{ event.zipCode }}</td>
+		</tr>
+	</tbody>
+</table>
+{% set address = event.address~'+'~event.city ~'+'~event.state ~'+'~event.country %}
+{% render 'EventBundle:Event:getGoogleMapAddress' with { address:address} %}
+<br class="clr">
+<hr>
+{% endif %}	

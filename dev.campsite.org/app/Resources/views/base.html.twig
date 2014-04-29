@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Platform D, Inc.">
+	<meta name="geography" content="Mountain View, CA">
+	<meta name="copyright" content="(c) 2012, Platform D, Inc. All rights reserved.">
+	<meta name="designer" content="Take Flight Graphics: www.takeflightgraphics.com">
+	<meta name="distribution" content="global">
+	<meta name="robots" content="index, follow">
+
+	<link rel="shortcut icon" href="favicon.ico">
+	
+        {#%<title>{% block title %}Welcome!{% endblock %}</title>%#}
+        <title>Platform D, Inc. Template</title>
+
+          {% block stylesheets %}{% endblock %}
+		  {% block javascripts %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+		{% block body %} 
+			{% block header %} {% endblock %}
+			{% block content %} Content{% endblock %}
+			{% block footer %} footer{% endblock%}
+		{% endblock %}
+    </body>
+</html>

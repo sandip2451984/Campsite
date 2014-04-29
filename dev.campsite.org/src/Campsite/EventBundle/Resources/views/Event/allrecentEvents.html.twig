@@ -1,0 +1,23 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<br class="clr">
+<div id="content">
+	<div class="colLft">
+		<h1 class="qAnswr">Recent Events</h1><br class="clr">	
+		{% for event in events %}
+			<div class="qAnswr">
+				<h3><a href="{{ path('marketingcamp', { 'id': event.id, 'communityId':communityId })}}">{{ event.name}}</a></h3>
+				<p>{{event.description }}</p>
+				{{ event.fromDate | date('d/m/Y') }} - {{ event.toDate | date('d/m/Y') }}
+			</div>
+		{% endfor %}
+		<hr class="clr">
+	</div>
+	<div class="colRt">
+	      {% include 'EventBundle::right_pages.html.twig' with {'homepage': 0, 'communityId' : communityId}  %}
+	</div>
+	<br class="clr">
+</div>
+<div class="push"></div>	
+{% endblock %}
+

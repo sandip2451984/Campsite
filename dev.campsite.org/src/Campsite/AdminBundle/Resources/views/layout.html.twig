@@ -1,0 +1,16 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<br class="clr">
+<div id="content">
+		
+		<div class="colLft">
+		  {{ block('admin_content')}}
+		</div>
+		<div class="colRt">
+					{% include 'EventBundle::right_pages.html.twig' with {'homepage': 0}  %}
+		</div>
+</div>
+<div class="clr"></div>	
+		<br class="clr">
+	<div class="push"></div>			
+{% endblock %}

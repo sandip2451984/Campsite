@@ -1,0 +1,46 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\UsersGroups
+ *
+ * @ORM\Table(name="users_groups")
+ * @ORM\Entity
+ */
+class UsersGroups
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var integer $groupId
+     *
+     * @ORM\Column(name="group_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $groupId;
+
+    /**
+     * @var FosUser
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fosuser_id", referencedColumnName="id")
+     * })
+     */
+    private $fosuser;
+
+
+}

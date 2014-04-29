@@ -1,0 +1,17 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<div id="content">
+	<br class="clr">
+  <div class="qList">
+			<h2>{{ sessionName}}</h2>
+			<h2> {{ sessionDetails.title}}</h2>
+			<h2>{{ sessionDetails.contentTitle}} </h2>
+			<div class="row">
+				<p> {{ sessionDetails.contentDescription}}</p>
+			</div>
+			<hr>
+		</div>
+		<div class="clr"></div>
+</div>
+<div class="push"> </div>
+{% endblock %}

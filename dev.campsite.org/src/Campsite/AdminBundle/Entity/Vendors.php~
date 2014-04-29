@@ -1,0 +1,88 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\Vendors
+ *
+ * @ORM\Table(name="vendors")
+ * @ORM\Entity
+ */
+class Vendors
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $companyName
+     *
+     * @ORM\Column(name="company_name", type="string", length=255, nullable=false)
+     */
+    private $companyName;
+
+    /**
+     * @var string $companyLogo
+     *
+     * @ORM\Column(name="company_logo", type="string", length=255, nullable=false)
+     */
+    private $companyLogo;
+
+    /**
+     * @var string $companyUrl
+     *
+     * @ORM\Column(name="company_url", type="string", length=255, nullable=false)
+     */
+    private $companyUrl;
+
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
+     */
+    private $description;
+
+    /**
+     * @var string $facebookUrl
+     *
+     * @ORM\Column(name="facebook_url", type="string", length=255, nullable=true)
+     */
+    private $facebookUrl;
+
+    /**
+     * @var string $twitterUrl
+     *
+     * @ORM\Column(name="twitter_url", type="string", length=255, nullable=true)
+     */
+    private $twitterUrl;
+
+    /**
+     * @var boolean $isActive
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive;
+
+    /**
+     * @var \DateTime $createdAt
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime $updatedAt
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     */
+    private $updatedAt;
+
+
+}

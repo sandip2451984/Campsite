@@ -1,0 +1,86 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<div id="content">
+<br class="clr">
+<div class="qList qListMP">
+			<h2>Chapters</h2>
+
+			<table summary="Event Info" class="tblStyle">
+				<tbody>
+					<tr>
+						<td width="40%"><strong>Chapter</strong></td>
+						<td width="40%"><strong>Location</strong></td>
+						<td width="10%"><strong>Members</strong></td>
+						<td width="10%"><strong></strong></td>
+					</tr>
+					{% for group in groups %}
+						<tr>
+							<td><a href="{{ path('group_details',{ id:group[0].id, 'groupName':group[0].city,'communityId':communityId})}}">{{group[0].city}}</a></td>
+							<td>{{ group[0].location }}</td>
+							<td>{{ group[1] }}</td>
+							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+								{% set user = app.security.getToken().getUser() %}
+								{% set userGroup = app.security.getToken().getUser() %}								
+								{% if userGroups[user.id][group[0].id] is defined %}
+									<td>Joined</td>
+								{% else %}
+									<td><a href="{{ path('join', { id: group[0].id})}}">Join</a></td>
+								{% endif %}							
+							{% else %}
+								<td><a href="{{ path('join', { id: group[0].id})}}">Join</a></td>
+							{% endif %}
+						</tr>
+					{% endfor %}	
+				</tbody>
+			</table>							
+	</div>
+<div class="qSort">
+			<div>
+				<h3>Chapters by Region</h3>
+				<ul class="lnks">
+					<li><a href="#">United States</a></li>
+					<li><a href="#">Europe</a></li>
+					<li><a href="#">Brazil</a></li>
+					<li><a href="#">ANZ</a></li>
+					<li><a href="#">China</a></li>
+				</ul>
+				
+				<p class="right"><a href="#" class="btnSm">Propose new Region &rsaquo;</a></p>
+				
+				<br class="clr">
+			</div>
+			<div>
+				<h3>Chapters by Topic</h3>
+				<ul class="lnks">
+					<li><a href="#">Startups</a></li>
+					<li><a href="#">Security</a></li>
+					<li><a href="#">Big Data</a></li>
+					<li><a href="#">Storage</a></li>
+				</ul>
+				
+				<p class="right"><a href="#" class="btnSm">Propose new Topic &rsaquo;</a></p>
+				
+				<br class="clr">			
+			</div>
+			<div>
+				<h3>Take the Cloud Quiz</h3>
+				<ul class="lnks">
+					<li><a href="#">Question 1</a></li>
+					<li><a href="#">Question 2</a></li>
+					<li><a href="#">Question 3</a></li>
+					<li><a href="#">Question 4</a></li>
+				</ul>
+				
+				<p class="right"><a href="#" class="btnSm">Propose new Question &rsaquo;</a></p>
+				
+				<br class="clr">				
+			</div>
+		</div>
+		
+	{% include 'EventBundle::right_content.html.twig'%}
+	<br class="clr">
+			
+	</div> <!-- end content -->
+<div class="push"></div>
+{% endblock %}
+

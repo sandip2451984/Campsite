@@ -1,0 +1,32 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+{% if sessions|length > 0 %}
+<div id="content">
+	<br class="clr">
+  <div class="qList">
+			<h2>{{ sessions[0].session.name}}</h2>
+			{% for session in sessions %}
+			<div class="row">
+				<p><a href="#">
+				<strong>{{ session.title}}</strong></a>: 
+				{% if  'NOTES' == session.contentType|upper %}			
+					(<a href="{{path('session_content', {id:session.id}) }}">{{ session.contentType}}</a>)							
+					 <a href="#">{{ session.contentTitle}}</a> 		
+				{% else %}
+					(<a href="{{ session.contentDescription}}" target="_BLANK">{{ session.contentType}}</a>)			
+					 <a href="{{ session.contentDescription}}" target="_BLANK">{{ session.contentTitle}}</a> 	
+				{% endif %}
+				by <a href="#">{{ session.contentWrittenby}}</a>
+				[Uploaded by <a href="#">{{ session.fosUser.userName}}</a>] {{ session.createdAt | date('M jS') }} </p>					
+			</div>
+			{% endfor %}
+			<hr>
+		</div>
+		<div class="clr"></div>
+</div>
+<div class="push"> </div>
+{% else %}
+	<br class="clr">
+	No Session Record Found
+{% endif %}
+{% endblock %}

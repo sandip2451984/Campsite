@@ -1,0 +1,25 @@
+<h2>Join a Group Near You</h2>
+{% if groups|length > 0 %}
+ {% set count = 1 %}
+ {% for  group in groups  %}
+ {% if count == 1 %}
+<ul>
+{% endif %}
+
+<li><a href="{{ path('group_details',{ id:group[0].id,groupName:group[0].city ,'communityId':communityId})}}"> {{group[0].city|slice(0,10)}}</a></li>
+
+ {%if count == 3 %} </ul>   {% set count = 0 %}{% endif %}
+ {% set count = count +1 %}
+{% endfor %}
+</ul>
+
+<br class="clr">
+
+{% if page == 1 %}
+	<p class="right"><a href="{{ path('add_group', { 'communityId': communityId })}}" class="btn">Add Group;</a></p>
+{% endif %}
+<p class="right"><a href="{{ path('chapters', { 'id': communityId })}}" class="btn">See more Cities &rsaquo;</a></p>
+{%else %}
+No Groups Found
+{% endif %}
+<br class="clr">				

@@ -1,0 +1,56 @@
+<?php
+
+namespace Campsite\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Campsite\AdminBundle\Entity\EventsVendors
+ *
+ * @ORM\Table(name="events_vendors")
+ * @ORM\Entity
+ */
+class EventsVendors
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var boolean $type
+     *
+     * @ORM\Column(name="type", type="boolean", nullable=false)
+     */
+    private $type;
+
+    /**
+     * @var Events
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Events")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="event_id", referencedColumnName="id")
+     * })
+     */
+    private $event;
+
+    /**
+     * @var Vendors
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Vendors")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="vendor_id", referencedColumnName="id")
+     * })
+     */
+    private $vendor;
+
+
+}

@@ -1,0 +1,41 @@
+{% extends 'EventBundle::layout.html.twig' %}
+{% block innercontent %}
+<div id="content">		
+		
+		<div class="col1">
+			{% if vendors|length > 0 %}
+				<h1>MarketingCamp Sponsors</h1>		
+				<hr>
+				
+				{% for vendorss in vendors %}
+					<a href="get-sponsor.html#sp-benefits">
+					<!-- <img width="32" height="32" alt="" class="right spcr-t3" src="{{asset('img/medal-platinum.png')}}"> -->
+				
+					<a target="_blank" href="{{ vendorss.vendor.companyLogo}}">
+					{% set img = 'img/vendors/' ~ vendorss.vendor.companyLogo %}
+					<img width="190" height="135" class="left spcr-r" alt="" src="{{ asset(img)}}">
+					<h3 class="spcr-t2">{{ vendorss.vendor.companyName}}</h3></a>
+					{{ vendorss.vendor.description|raw}}
+					{% if vendorss.vendor.twitterUrl   != '' or vendorss.vendor.facebookUrl   != '' %}
+						<p>Follow us on <a target="_blank" href="{{ vendorss.vendor.twitterUrl}}">
+						<img width="32" height="32" alt="" src="{{asset('img/twitter.png')}}"></a> 
+						<a target="_blank" href="{{ vendorss.vendor.facebookUrl}}">
+						<img width="32" height="32" alt="" src="{{asset('img/facebook.png')}}"></a></p>
+					{% endif %}	
+					<hr class="clr">
+				{% endfor %}
+			{% else %}
+				No Record Found
+			{% endif %}
+		</div>
+		
+		<div class="col2">
+			{% include "EventBundle::right_camp.html.twig" %}
+		</div>
+			
+		<div class="clr"></div>	
+			
+	</div>
+	<div class="push"></div>
+{% endblock %}
+

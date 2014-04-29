@@ -1,0 +1,225 @@
+{% set loggedIn = (is_granted("IS_AUTHENTICATED_REMEMBERED")) ? 1 : 0 %}
+{% if loggedIn == 1 %}
+	{% set user = app.security.getToken().getUser() %}
+{% endif %}	
+
+<link href="{{asset('css/site2.css')}}" media="all" rel="stylesheet" type="text/css">
+<script src="{{ asset('js/jquery.form.js')}}" type="text/javascript"></script> 
+
+ 
+<h2>Events Session</h2>
+ <script type="text/javascript">
+
+
+$(document).ready(function() {
+
+	
+$('#suggestion_title').keyup(function() {
+var value=$('#suggestion_title').val();
+if($.trim(value) != '') {
+	$('.uvForumCreateIdea-new').css('display','block');
+	$('.uvFormFlash').css('display','none');
+	$("#suggestion_idea").addClass("uvField uvField-idea uvField-hasvalue");
+	
+	}
+});
+$('#suggestion_title').focus(function() {
+$("#suggestion_idea").addClass("uvField uvField-idea uvField-focus");
+});
+
+$('#suggestion_title').keydown(function() {
+var value=$('#suggestion_title').val();
+if($.trim(value)== '' ) {
+$('.uvForumCreateIdea-new').css('display','none');
+$("#suggestion_idea").removeClass("uvField-hasvalue");
+$("#suggestion_description").removeClass("uvField-hasvalue");
+
+}
+
+});
+
+$('#suggestion-describe').keyup(function() {
+var value=$('#suggestion-describe').val();
+
+if($.trim(value) != '') {
+	//$('.uvForumCreateIdea-new').css('display','block');
+	$("#suggestion_description").addClass("uvField uvField-description uvField-hasvalue");
+	
+	}
+});
+$('#suggestion-describe').focus(function() {
+$("#suggestion_description").addClass("uvField uvField-description uvField-focus");
+});
+
+$('#suggestion-describe').keydown(function() {
+var value=$('#suggestion-describe').val();
+if($.trim(value)== '' ) {
+//$('.uvForumCreateIdea-new').css('display','none');
+
+$("#suggestion_description").removeClass("uvField-hasvalue");
+}
+});
+
+$(".uvFormFlashClose").click(function(){
+	$('.uvFormFlash').css('display','none');
+});
+
+$(".btnTny").click(function(){
+	$('.uvIdeaVoteFormToggle').hide();
+	var id = $(this).attr("id");
+	// NOw we have to Display that bloc
+	var idname = '#vote_'+id;
+	 $('#vote_'+id).toggle();
+	
+});
+
+$(".closeVote").click(function(){
+	var id= $(this).attr("id");
+	id = id.replace("close_","");
+	$('#vote_'+id).css('display','none');	
+});
+
+
+}); 
+
+	
+</script>
+{% if loggedIn == 1 %}
+<form method="post" action="{{path('add_session')}}">
+{% if app.session.hasFlash('failure') %} 
+	   <div class="uvFormFlash uvFormFlash-error" style="display: block;" data-error-key="email-invalid-error">
+  <div class="uvFormFlashMessage">{{ app.session.flash('failure') }}</div>
+  <a class="uvFormFlashClose">Close</a>
+</div>
+{% endif %}
+
+  <div class="uvField uvField-idea" id="suggestion_idea">
+  
+  <label class="uvFieldInner" for="suggestion_title">
+  <span class="uvFieldPlaceholder">&nbsp;Enter your Topic</span>
+	  <input name="sessionName" style="border: medium none" id="suggestion_title" class="uvFieldText" maxlength="140" type="text">
+	</label>
+	
+  </div>
+        <div class="uvForumCreateIdea-new" style="display: none;">
+
+                  <div class="uvField uvField-description" id="suggestion_description">
+					
+                    <label class="uvFieldInner" for="suggestion-describe">
+                      <span class="uvFieldPlaceholder">Describe the Topic(Optional)</span>
+                      <textarea class="uvFieldTextarea" name="sessionDescription" id="suggestion-describe"></textarea>
+                    </label>
+                
+                  </div>
+				      <div>
+						<button type="submit" class="btnF">Post idea</button>
+						<a class="uvStyle-cancel" href="#" id="suggestion_form_reset">Cancel</a>
+						<span class="uvFieldEtc-thinking">Submitting...</span>
+					</div>
+		</div>
+<input name="eventId" type="hidden" value="{{eventId}}"> 	
+<input name="userId" type="hidden" value="{{user.id}}"> 	
+
+	</form>	
+{% endif %}	
+<hr class="clr">
+
+{% if sessionObj|length > 0 %}
+{% for session in sessionObj %}
+<div class="voteBx">
+{% if session[1] == 0 or session[1] == 1 %}
+{% set vote= 'vote' %}
+{% else %}
+{% set vote = 'votes' %}
+{% endif %}
+<p id="voteBx_{{session[0].id}}"><strong>{{ (session[1] != '') ? session[1] : '0'}}</strong><br>
+<span class="tnytxt gry">{{vote}}</span></p>
+
+<!-- <a class="btnTny">{{vote}}</a>	 -->
+
+<div data-iteration="1" data-closed-reason="" class="uvVoter uvVoter-logged_out uvVoterMode-voteable uvVoterStatus-open">
+  <form data-suggestion_id="3679502" data-forum_id="193848" action="{{path('add_vote')}}" method="post" class="uvIdeaVoteForm" novalidate="" id="votingForm_{{session[0].id}}">
+    
+	{% if loggedIn == 1 %}
+	
+	<script type="text/javascript">
+	
+	
+	
+	  $(document).ready(function() {
+			
+			 $('#votingForm_{{session[0].id}}').ajaxForm({ 
+		
+				// target identifies the element(s) to update with the server response 
+				target: '#voteBx_{{session[0].id}}', 
+		 
+				// success identifies the function to invoke when the server response 
+				// has been received; here we apply a fade-in effect to the new content 
+				success: function() { 
+					$('#vote_{{session[0].id}}').css('display','none');
+					//$('#voteBx_{{session[0].id}}').fadeIn('slow'); 
+				} 
+			});  
+		});
+	</script>
+	{% endif %}
+	<!-- Update to show number of votes cast -->
+    <span class="uvIdeaVoteFormTrigger">
+      
+		 <a class="btnTny" id="{{session[0].id}}">{{vote}}</a>	
+		 
+		<button data-plural="%{num} votes" data-singular="%{num} vote" id="uvIdeaVoteFormTriggerState-you_voted-1" class="uvIdeaVoteFormTriggerState-you_voted uvStyle-button uvStyle-button-selected">0 votes</button>
+      <button class="uvIdeaVoteFormTriggerState-out_of_votes uvStyle-button uvStyle-button-disabled uvTip">Vote</button>
+      <button class="uvIdeaVoteFormTriggerState-voting_closed uvStyle-button uvStyle-button-disabled uvTip">Vote</button>
+    </span>
+    <!--- end -->
+    
+    <div class="uvIdeaVoteFormToggle" style="display: none;" tabindex="-1" id="vote_{{session[0].id}}">
+	<!-- Start of Fieldset votes-->
+      <fieldset class="uvIdeaVoteFormFieldset">
+        <legend class="uvIdeaVoteFormLegend">Vote</legend>
+		{% if loggedIn == 1 %}
+		  <input type="hidden" name="userId" value="{{user.id}}">
+		{% endif %}
+		
+		<input type="hidden" name="sessionId" value="{{session[0].id}}">
+		<input name="eventId" type="hidden" value="{{eventId}}">
+        <div class="uvIdeaVoteButtons">
+		<select name="vote_rating" class="uvIdeaVoteButton-1-votes">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+					<option>6</option>
+					<option>7</option>
+					<option>8</option>
+					<option>9</option>
+					<option>10</option>
+		</select>
+		
+          <button name="to" value="1" type="submit" class="uvIdeaVoteButton uvIdeaVoteButton-2-votes uvStyle-button">Submit</button>
+          <button name="to" value="2" type="reset" class="uvIdeaVoteButton uvIdeaVoteButton-3-votes uvStyle-button">Cancel</button>
+          <a class="closeVote" id="close_{{session[0].id}}">Close</a>
+        </div>
+		
+      </fieldset>
+	  <!-- end of Fieldset votes-->
+    </div>
+  </form> <!-- Form votes -->
+  
+</div>
+<!-- ENd 12 -->	  
+</div>	
+
+<div class="qAnswr">
+<h3><a href="{{ path('session_details',{ 'id': session[0].id })}}">{{ session[0].name}}</a></h3>
+{{session[0].description|raw}}
+</div>
+<div class="clr"> </div>
+<hr class="clr">
+{% endfor %}
+
+{% else %}
+	<div class="norecord alert-message info"> No Event Session Found </div>
+{% endif %}

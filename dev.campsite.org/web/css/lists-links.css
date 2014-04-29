@@ -1,0 +1,225 @@
+
+/*::::::::::::::: GLOBAL LINK STYLES :::::::::::::::*/
+
+a { 
+	color: #1c92cf; /* 2faad9 */
+	text-decoration: none; 
+}
+a:hover {
+	color: #ca43bb;
+	text-decoration: underline;
+}
+
+a:active, a:focus { outline: none; }
+
+a img {
+	vertical-align: middle;
+}
+
+a.btnTny {
+	display: block;
+	width: 75px;
+	margin-top: 5px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background: #2faad9;
+	behavior: url("PIE.php");
+	font-size: 12px;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(146, 146, 146, 1.0);
+}
+
+a.btn, a.btnSm, a.btnLrg {
+	border-top: 1px solid #e2e2e2;
+	border-left: 1px solid #e2e2e2;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: #ccc 1px 1px 6px;
+	-moz-box-shadow: #ccc 1px 1px 6px;
+	box-shadow: #ccc 1px 1px 6px;
+	background: #fff;
+	behavior: url("PIE.php");
+	font-weight: 700;
+}
+a.btn, a.btnSm {
+	padding: 3px 8px;
+}
+a.btn {
+	font-size: 14px;
+}
+a.btnSm {
+	font-size: 12px;
+}
+a.btnLg {
+	padding: 5px 10px;
+	font-size: 18px;
+}
+a.btnTny:hover, a.btn:hover, a.btnSm:hover, a.btnLg:hover {
+	background: #d757c8;
+	text-decoration: none;
+	color: #fff;
+}
+
+/* unordered lists: links */
+
+ul {
+	list-style-type: none; 
+	padding: 0;
+	margin: 0; 
+}
+
+/*::::::::::::::: topNav LIST STYLES :::::::::::::::*/
+
+#topNav ul {
+	height: 35px;
+}
+#topNav li {
+	float: right;
+	padding-top: 6px; 
+	padding-left: 25px;
+}	
+#topNav li {
+	font-family: 'myriad-pro', Arial, sans-serif;
+	font-size: 12px;
+	color: #777;
+	text-transform: uppercase;
+}
+	#topNav li:first-child {
+		padding-top: 6px;
+	}
+	#topNav li a {
+		display: inline;
+	}
+
+/*::::::::::::::: nav LIST STYLES :::::::::::::::*/
+
+#nav ul {
+	width: 1050px;
+}
+#nav li {
+	float: left;
+	padding-left: 45px;
+	white-space: nowrap;
+}
+	#nav li:first-child {
+		padding-left: 0;
+	}
+#nav li a, #nav li a:visited, #nav li a:active {
+	display: block;
+	height: 32px;
+	font: bold 18px/20px 'Century Gothic', 'AvalonMediumRegular', sans-serif;
+}
+#nav li a:hover {
+	text-decoration: none;
+}
+
+/*::::::::::::::: PAGE CONTENT LIST STYLES :::::::::::::::*/
+
+ul.dflt {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}	
+	ul.dflt li {
+		padding: 0 0 2px 19px;
+		background: url("../img/bullet.png") 0 5px no-repeat;
+	}
+		
+ul.lnks li {
+	padding: 0 0 0 12px;
+	background: url("../img/arrow-sm.png") 0 7px no-repeat;	
+}
+	
+#showCase ul {
+	float: left;
+	margin-right: 14px;
+	margin-bottom: 15px;
+}
+	#showCase ul li {
+		padding: 0 0 8px 17px;
+		background: url("../img/bullet.png") 0 3px no-repeat;
+		font-size: 12px;
+		line-height: 18px;
+	}
+	
+.kWords ul {
+	height: 25px;
+}
+	.kWords ul li {
+		display: inline;
+		padding: 2px 3px;
+		margin-left: 1px;
+		border: 1px solid #bfedff;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		background: #fff;
+		behavior: url("PIE.php");
+		font-size: 11px;
+	}
+		.kWords ul li:first-child {
+			padding: 0;
+			margin-left: 0;
+			border: 0 none;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+			background: none;
+			text-transform: uppercase;
+		}
+#intro ul, .col2 ul {
+	margin-bottom: 15px;
+}
+.col1 ul {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.cBx4 ul {
+	margin-bottom: 7px;
+}
+	#intro ul li, .cBx4 ul li, .col1 ul li, .col2 ul li {
+		padding: 0 0 8px 20px;
+		background: url("../img/bullet.png") 0 5px no-repeat;
+	}
+	#intro ul li {
+		font-size: 16px;
+		line-height: 20px;
+	}
+	.cBx4 ul li {
+		padding-bottom: 2px;
+		font-size: 13px;
+	}		
+ul.topics li {
+	font-size: 13px;
+	line-height: 18px;
+}
+
+ul.pdf li {
+	padding: 0 0 5px 24px;
+	background: url("../img/acrobat.png") 0 3px no-repeat;
+}
+
+/*::::::::::::::: sdbrNav LIST STYLES :::::::::::::::*/
+
+/* ul.sdbrNav li, ul.cLnks li {
+	background: url("../img/arrow-sm.png") 0 7px no-repeat;
+}
+ul.sdbrNav li {
+	padding: 0 0 2px 9px;
+}
+ul.cLnks li {
+	padding: 0 0 10px 9px;
+} */
+
+/*::::::::::::::: FOOTER COLUMN LIST STYLES :::::::::::::::*/
+
+.ftrcol ul {
+	margin-bottom: 10px;
+}
+.ftrcol a, .ftrcol a:visited, .ftrcol a:active { 
+	font-size: 12px;
+	line-height: 19px;
+}
