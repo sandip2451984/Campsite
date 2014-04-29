@@ -1,10 +1,10 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:     mysql.platformd.com
+    database_host:     ~
     database_port:     ~
-    database_name:     platformd_campdb
-    database_user:     kamalnayak
-    database_password: sandip2451984
+    database_name:     ~
+    database_user:     ~
+    database_password: ~
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
@@ -13,4 +13,4 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
-    default_communityId: 1
+    default_communityId: ~
